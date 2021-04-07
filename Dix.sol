@@ -2,9 +2,6 @@
 pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-
-
-
 contract DIX is ERC20 {
     
     struct Butt {
@@ -81,8 +78,10 @@ contract DIX is ERC20 {
     function distributeDicksForMouth(address mouth) private {
         if(dicksInButt[mouth].exists == true) {
             uint256 rewards = getDicksForMouth(mouth);
-            _mint(mouth, rewards);
-            clearDicksForMouth(mouth);
+            if(rewards > 0) {
+                _mint(mouth, rewards);
+                clearDicksForMouth(mouth);
+            }
         }
     }
     

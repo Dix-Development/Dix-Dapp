@@ -73,11 +73,6 @@ function AdminNavbar(props) {
                 toggled: props.sidebarOpened,
               })}
             ></div>
-            <NavbarToggler onClick={toggleCollapse}>
-              <span className="navbar-toggler-bar navbar-kebab" />
-              <span className="navbar-toggler-bar navbar-kebab" />
-              <span className="navbar-toggler-bar navbar-kebab" />
-            </NavbarToggler>
             <Nav>
               <NavbarBrand href="#" onClick={(e) => e.preventDefault()}>
                 {props.brandText}
