@@ -15,14 +15,14 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-// nodejs library that concatenates classes
-import classNames from "classnames";
-// react plugin used to create charts
-import { Line, Bar } from "react-chartjs-2";
+import React, { useEffect, useState } from "react";
 
+import Web3 from "web3";
+import Contract from "web3-eth-contract";
+import erc20jsonInterface from "../Config/ERC20.json";
 // reactstrap components
 import {
+  Alert,
   Button,
   ButtonGroup,
   Card,
@@ -34,11 +34,93 @@ import {
   Col,
   InputGroup,
   InputGroupAddon,
-  InputGroupText,
   CardText,
 } from "reactstrap";
 
 function Mouth(props) {
+  const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
+  const contractAddress = "0xecb54e499eE6117bd20129FB3D73dbf2Fd442898";
+  Contract.setProvider(Web3.givenProvider || "http://localhost:8545");
+  let dixTract = new Contract(erc20jsonInterface, contractAddress);
+  let [account, setAccount] = useState("");
+  let [mouthAmount, setMouthAmount] = useState("");
+  let [buttAmount, setButtAmount] = useState("");
+  let [dixForMouth, setDixForMouth] = useState("");
+  let [dixForButt, setDixForButt] = useState("0");
+  let [dixToBePulledFromButt, setDixToBePulled] = useState("0");
+  let [buttStickinStatus, setButtStickin] = useState({ status: "undefined" });
+  let [buttPullinStatus, setButtPullin] = useState({ status: "undefined" });
+
+  useEffect(() => {
+    web3.eth.getAccounts().then((accts) => {
+      setAccount(accts[0]);
+      dixTract.methods
+        .balanceOf(accts[0])
+        .call({ from: accts[0] })
+        .then((e) => {
+          var v = e / Math.pow(10, 18);
+          setMouthAmount(v);
+        });
+      dixTract.methods
+        .getDicksInButt()
+        .call({ from: accts[0] })
+        .then((e) => {
+          var v = e / Math.pow(10, 18);
+          setButtAmount(v);
+        });
+      dixTract.methods
+        .getDicksForMouth(accts[0])
+        .call({ from: accts[0] })
+        .then((e) => {
+          var v = e / Math.pow(10, 18);
+          setDixForMouth(v);
+        });
+    });
+  }, [buttStickinStatus, buttPullinStatus]);
+
+  const stickDixInButt = function () {
+    setButtStickin({ status: "undefined" });
+    var weiAmount = web3.utils.toWei(dixForButt);
+    dixTract.methods
+      .stickDicksInButt(weiAmount)
+      .send({ from: account })
+      .then((e) => {
+        setButtStickin({ status: "success" });
+      })
+      .catch((err) => {
+        setButtStickin({ status: "fail", recipt: err.recipt });
+      });
+  };
+  const pullDixFromButts = function () {
+    setButtPullin({ status: "undefined" });
+    var weiAmount = web3.utils.toWei(dixToBePulledFromButt);
+    dixTract.methods
+      .pullDicksOutOfButt(weiAmount)
+      .send({ from: account })
+      .then((e) => {
+        setButtPullin({ status: "success" });
+      })
+      .catch((err) => {
+        setButtPullin({ status: "fail", recipt: err.recipt });
+      });
+  };
+
+  const isStickinFailed = () => {
+    if (buttStickinStatus.status === "fail") {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const isPullinFailed = () => {
+    if (buttPullinStatus.status === "fail") {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   return (
     <>
       <div className="content">
@@ -48,7 +130,7 @@ function Mouth(props) {
               <Card>
                 <CardHeader tag="h3">Dix in your Mouth</CardHeader>
                 <CardBody>
-                  <CardText>100000000.2344515321432</CardText>
+                  <CardText>{mouthAmount}</CardText>
                 </CardBody>
               </Card>
             </Col>
@@ -56,7 +138,7 @@ function Mouth(props) {
               <Card>
                 <CardHeader tag="h3">Dix in your Butt</CardHeader>
                 <CardBody>
-                  <CardText>10000.526243251</CardText>
+                  <CardText>{buttAmount}</CardText>
                 </CardBody>
               </Card>
             </Col>
@@ -64,7 +146,7 @@ function Mouth(props) {
               <Card>
                 <CardHeader tag="h3">Dix For your Mouth</CardHeader>
                 <CardBody>
-                  <CardText>10000.526243251</CardText>
+                  <CardText>{dixForMouth}</CardText>
                 </CardBody>
               </Card>
             </Col>
@@ -74,17 +156,28 @@ function Mouth(props) {
               <Card>
                 <CardHeader tag="h3">Stick Dix in your Butt</CardHeader>
                 <CardBody>
+                  <Alert color="danger" hidden={isStickinFailed()}>
+                    {buttStickinStatus.recipt}
+                  </Alert>
                   <InputGroup size="lg">
                     <InputGroupAddon addonType="prepend">DIX</InputGroupAddon>
                     <Input
+                      onChange={(e) => {
+                        setDixForButt(e.target.value);
+                      }}
                       placeholder="Amount"
                       min={0}
-                      max={100}
                       type="number"
                       step="1"
                     />
                   </InputGroup>
-                  <ButtonGroup size="sm">
+                  <ButtonGroup
+                    size="sm"
+                    onClick={(e) => {
+                      stickDixInButt();
+                      setDixForButt("");
+                    }}
+                  >
                     <Button>Stick 'em in!</Button>
                   </ButtonGroup>
                 </CardBody>
@@ -94,18 +187,30 @@ function Mouth(props) {
               <Card>
                 <CardHeader tag="h3">Pull Dix out of your Butt</CardHeader>
                 <CardBody>
+                  <Alert color="danger" hidden={isPullinFailed()}>
+                    {buttPullinStatus.recipt}
+                  </Alert>
                   <InputGroup size="lg">
                     <InputGroupAddon addonType="prepend">DIX</InputGroupAddon>
                     <Input
+                      onChange={(e) => {
+                        setDixToBePulled(e.target.value);
+                      }}
                       placeholder="Amount"
                       min={0}
-                      max={100}
                       type="number"
                       step="1"
                     />
                   </InputGroup>
                   <ButtonGroup size="sm">
-                    <Button>Pull 'em out!</Button>
+                    <Button
+                      onClick={(e) => {
+                        pullDixFromButts();
+                        setDixToBePulled("");
+                      }}
+                    >
+                      Pull 'em out!
+                    </Button>
                   </ButtonGroup>
                 </CardBody>
               </Card>

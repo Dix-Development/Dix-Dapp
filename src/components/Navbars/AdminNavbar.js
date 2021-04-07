@@ -15,47 +15,41 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useEffect, useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 
 // reactstrap components
-import {
-  Button,
-  Collapse,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  Input,
-  InputGroup,
-  NavbarBrand,
-  Navbar,
-  NavLink,
-  Nav,
-  Container,
-  Modal,
-  NavbarToggler,
-  ModalHeader,
-  NavItem,
-} from "reactstrap";
+import { NavbarBrand, Navbar, Container, NavbarToggler, Nav } from "reactstrap";
 
 function AdminNavbar(props) {
-  const [color, setcolor] = React.useState("navbar-transparent");
-  React.useEffect(() => {
+  const [collapseOpen, setcollapseOpen] = useState(false);
+  const [color, setcolor] = useState("navbar-transparent");
+
+  useEffect(() => {
     window.addEventListener("resize", updateColor);
     // Specify how to clean up after this effect:
     return function cleanup() {
       window.removeEventListener("resize", updateColor);
     };
   });
+
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
   const updateColor = () => {
-    if (window.innerWidth < 993) {
+    if (window.innerWidth < 993 && collapseOpen) {
       setcolor("bg-white");
     } else {
       setcolor("navbar-transparent");
     }
+  };
+
+  const toggleCollapse = () => {
+    if (collapseOpen) {
+      setcolor("navbar-transparent");
+    } else {
+      setcolor("bg-white");
+    }
+    setcollapseOpen(!collapseOpen);
   };
 
   return (
@@ -67,7 +61,23 @@ function AdminNavbar(props) {
               className={classNames("navbar-toggle d-inline", {
                 toggled: props.sidebarOpened,
               })}
+            >
+              <NavbarToggler type="button" onClick={props.toggleSidebar}>
+                <span className="navbar-toggler-bar bar1" />
+                <span className="navbar-toggler-bar bar2" />
+                <span className="navbar-toggler-bar bar3" />
+              </NavbarToggler>
+            </div>
+            <div
+              className={classNames("navbar-toggle d-inline", {
+                toggled: props.sidebarOpened,
+              })}
             ></div>
+            <NavbarToggler onClick={toggleCollapse}>
+              <span className="navbar-toggler-bar navbar-kebab" />
+              <span className="navbar-toggler-bar navbar-kebab" />
+              <span className="navbar-toggler-bar navbar-kebab" />
+            </NavbarToggler>
             <Nav>
               <NavbarBrand href="#" onClick={(e) => e.preventDefault()}>
                 {props.brandText}
