@@ -34,6 +34,8 @@ function Mouth(props) {
   let [buttStickinStatus, setButtStickin] = useState({ status: "undefined" });
   let [buttPullinStatus, setButtPullin] = useState({ status: "undefined" });
   let [ethEnabled, setEthEnabled] = useState(false);
+  let [stickInButtValid, setStickInButtValid] = useState(false);
+  let [pullDixOutValid, setPullDixOutValid] = useState(false);
   if (window.ethereum && !ethEnabled) {
     window.web3 = new Web3(window.ethereum);
     window.ethereum.enable().then((e) => {
@@ -97,6 +99,23 @@ function Mouth(props) {
       });
   };
 
+  const StickinValidator = (val) => {
+    if (!isNaN(val) && mouthAmount >= val && val > 0) {
+      setStickInButtValid(true);
+    } else {
+      setStickInButtValid(false);
+    }
+  };
+
+  const pullOutValidator = (val) => {
+    let value = parseFloat(val);
+    if (!isNaN(value) && buttAmount >= value && value > 0) {
+      setPullDixOutValid(true);
+    } else {
+      setPullDixOutValid(false);
+    }
+  };
+
   const isStickinFailed = () => {
     if (buttStickinStatus.status === "fail") {
       return false;
@@ -110,6 +129,17 @@ function Mouth(props) {
       return false;
     } else {
       return true;
+    }
+  };
+
+  const formatBigDecimal = (val) => {
+    if (val.includes(".")) {
+      let splitDix = val.split(".");
+      let decimal = splitDix[1].slice(0, 18);
+      let finalDix = splitDix[0] + "." + decimal;
+      return finalDix;
+    } else {
+      return val;
     }
   };
 
@@ -161,12 +191,20 @@ function Mouth(props) {
                   <InputGroupAddon addonType="prepend">DIX</InputGroupAddon>
                   <Input
                     onChange={(e) => {
-                      setDixForButt(e.target.value);
+                      let dix = formatBigDecimal(e.target.value);
+                      StickinValidator(dix);
+                      setDixForButt(dix);
+                    }}
+                    onBlur={(e) => {
+                      let dix = formatBigDecimal(e.target.value);
+                      StickinValidator(dix);
+                      setDixForButt(dix);
                     }}
                     placeholder="Amount"
                     min={0}
                     type="number"
                     step="1"
+                    value={dixForButt}
                   />
                 </InputGroup>
                 <ButtonGroup
@@ -176,7 +214,7 @@ function Mouth(props) {
                     setDixForButt("");
                   }}
                 >
-                  <Button>Stick 'em in!</Button>
+                  <Button disabled={!stickInButtValid}>Stick 'em in!</Button>
                 </ButtonGroup>
               </CardBody>
             </Card>
@@ -192,12 +230,20 @@ function Mouth(props) {
                   <InputGroupAddon addonType="prepend">DIX</InputGroupAddon>
                   <Input
                     onChange={(e) => {
-                      setDixToBePulled(e.target.value);
+                      let dix = formatBigDecimal(e.target.value);
+                      pullOutValidator(dix);
+                      setDixToBePulled(dix);
+                    }}
+                    onBlur={(e) => {
+                      let dix = formatBigDecimal(e.target.value);
+                      pullOutValidator(dix);
+                      setDixToBePulled(dix);
                     }}
                     placeholder="Amount"
                     min={0}
                     type="number"
                     step="1"
+                    value={dixToBePulledFromButt}
                   />
                 </InputGroup>
                 <ButtonGroup size="sm">
@@ -206,6 +252,7 @@ function Mouth(props) {
                       pullDixFromButts();
                       setDixToBePulled("");
                     }}
+                    disabled={!pullDixOutValid}
                   >
                     Pull 'em out!
                   </Button>
