@@ -12,7 +12,6 @@ import {
   CardHeader,
   CardBody,
   Input,
-  Table,
   Row,
   Col,
   InputGroup,
@@ -22,7 +21,7 @@ import {
 
 function Mouth(props) {
   const web3 = new Web3(Web3.givenProvider);
-  const contractAddress = "0x25587C7dA6b0EeB316EFE1A488662567091e60CA";
+  const contractAddress = "0xC9E4d54c547fad0aCfB478e43EAc7De24A53A7F9";
   Contract.setProvider(Web3.givenProvider);
   let dixTract = new Contract(erc20jsonInterface, contractAddress);
   let [account, setAccount] = useState(null);
@@ -42,6 +41,18 @@ function Mouth(props) {
       setEthEnabled(true);
     });
   }
+
+  setInterval((e) => {
+    if (ethEnabled && account) {
+      dixTract.methods
+        .getDicksForMouth(account)
+        .call({ from: account })
+        .then((e) => {
+          var v = e / Math.pow(10, 18);
+          setDixForMouth(v);
+        });
+    }
+  }, 60000);
 
   useEffect(() => {
     if (ethEnabled) {
@@ -82,7 +93,7 @@ function Mouth(props) {
         setButtStickin({ status: "success" });
       })
       .catch((err) => {
-        setButtStickin({ status: "fail", recipt: err.recipt });
+        setButtStickin({ status: "fail", message: err.message });
       });
   };
   const pullDixFromButts = function () {
@@ -95,7 +106,7 @@ function Mouth(props) {
         setButtPullin({ status: "success" });
       })
       .catch((err) => {
-        setButtPullin({ status: "fail", recipt: err.recipt });
+        setButtPullin({ status: "fail", message: err.message });
       });
   };
 
@@ -185,7 +196,7 @@ function Mouth(props) {
               <CardHeader tag="h3">Stick Dix in your Butt</CardHeader>
               <CardBody>
                 <Alert color="danger" hidden={isStickinFailed()}>
-                  {buttStickinStatus.recipt}
+                  {buttStickinStatus.message}
                 </Alert>
                 <InputGroup size="lg">
                   <InputGroupAddon addonType="prepend">DIX</InputGroupAddon>
@@ -224,7 +235,7 @@ function Mouth(props) {
               <CardHeader tag="h3">Pull Dix out of your Butt</CardHeader>
               <CardBody>
                 <Alert color="danger" hidden={isPullinFailed()}>
-                  {buttPullinStatus.recipt}
+                  {buttPullinStatus.message}
                 </Alert>
                 <InputGroup size="lg">
                   <InputGroupAddon addonType="prepend">DIX</InputGroupAddon>
