@@ -58,7 +58,7 @@ function AboutDix() {
               <CardBody>
                 <CardText>
                   Ahh yes Dix can also be stuck into your butt! By sticking Dix
-                  into your but you ear more dix for your mouth. The more Dix
+                  into your Butt you earn more dix for your mouth. The more Dix
                   you stick into your back end the more Dix you get for your
                   mouth! A 1% reward of Dix for your mouth can be earned every
                   day!
