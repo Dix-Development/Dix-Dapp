@@ -160,7 +160,7 @@ function Mouth(props) {
         {!ethEnabled ? (
           <Alert color="danger">
             You need to connect your MetaMask wallet to this site before working
-            with DIX, <a href="https://metamask.io/">Download MetaMaks</a>
+            with DIX, <a href="https://metamask.io/">Download MetaMask</a>
           </Alert>
         ) : null}
 
