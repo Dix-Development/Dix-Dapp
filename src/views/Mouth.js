@@ -183,7 +183,7 @@ function Mouth(props) {
           </Col>
           <Col>
             <Card>
-              <CardHeader tag="h3">Dix For your Mouth</CardHeader>
+              <CardHeader tag="h3">Dix for your Mouth</CardHeader>
               <CardBody>
                 <CardText>{dixForMouth}</CardText>
               </CardBody>
