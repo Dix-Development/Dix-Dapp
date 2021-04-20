@@ -22,7 +22,7 @@ import {
 
 function Mouth(props) {
   const web3 = new Web3(Web3.givenProvider);
-  const contractAddress = "0xC9E4d54c547fad0aCfB478e43EAc7De24A53A7F9";
+  const contractAddress = "0x5f61Df6Aa48a2cAD1dcA2a1D022B0fD46Cb63f42";
   Contract.setProvider(Web3.givenProvider);
   let dixTract = new Contract(erc20jsonInterface, contractAddress);
   let [account, setAccount] = useState(null);
