@@ -427,20 +427,6 @@ contract DIX is ERC20 {
         return false;
     }
     
-    function transferFrom(address sender, address recipient, uint256 amount) public virtual override returns (bool) {
-        uint amountToBurn = (amount)/100;
-        uint amountToSend = amount - amountToBurn;
-        bool success = super.transferFrom(sender, recipient, amountToSend);
-        if(success == true) {
-            if(amount > 0){
-                _burn(sender, amountToBurn);
-            }
-            distributeDicksForMouth(sender);
-            return true;
-        }
-        return false;
-    }
-    
     function stickDicksInButt(uint256 amount) public returns(bool) {
         if(balanceOf(msg.sender)>=amount && amount > 0) {
             if(dicksInButt[msg.sender].exists == true) {
