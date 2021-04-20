@@ -17,8 +17,8 @@ function AboutDix() {
     <>
       <div className="content">
         <Row>
-          <Col sm="4">
-            <img src={logo} alt="Dix Logo" />
+          <Col sm="2">
+            <img style={{ "max-height": "150px" }} src={logo} alt="Dix Logo" />
           </Col>
           <Col>
             <Card>
@@ -75,6 +75,12 @@ function AboutDix() {
                   <ButtonGroup size="lg">
                     <Button
                       color="secondary"
+                      href="https://twitter.com/dixtoken"
+                    >
+                      @DixToken
+                    </Button>
+                    <Button
+                      color="secondary"
                       href="https://www.reddit.com/r/dixtoken"
                     >
                       Reddix
@@ -84,12 +90,6 @@ function AboutDix() {
                       href="https://discord.gg/RX3uHasKYU"
                     >
                       Dixcord
-                    </Button>
-                    <Button
-                      color="secondary"
-                      href="https://twitter.com/DixToken"
-                    >
-                      TwiDixtter
                     </Button>
                   </ButtonGroup>
                 </div>

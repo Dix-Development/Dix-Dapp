@@ -17,7 +17,6 @@ import {
   InputGroup,
   InputGroupAddon,
   CardText,
-  Container,
 } from "reactstrap";
 
 function Mouth(props) {
