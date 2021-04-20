@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Web3 from "web3";
 import Contract from "web3-eth-contract";
 import erc20jsonInterface from "../Config/ERC20.json";
+import { BscConnector } from "@binance-chain/bsc-connector";
 // reactstrap components
 import {
   Alert,
@@ -17,6 +18,7 @@ import {
   InputGroup,
   InputGroupAddon,
   CardText,
+  Container,
 } from "reactstrap";
 
 function Mouth(props) {
@@ -32,18 +34,23 @@ function Mouth(props) {
   let [dixToBePulledFromButt, setDixToBePulled] = useState("0");
   let [buttStickinStatus, setButtStickin] = useState({ status: "undefined" });
   let [buttPullinStatus, setButtPullin] = useState({ status: "undefined" });
-  let [ethEnabled, setEthEnabled] = useState(false);
+  let [walletEnabled, setWalletEnabled] = useState(false);
   let [stickInButtValid, setStickInButtValid] = useState(false);
   let [pullDixOutValid, setPullDixOutValid] = useState(false);
-  if (window.ethereum && !ethEnabled) {
-    window.web3 = new Web3(window.ethereum);
-    window.ethereum.enable().then((e) => {
-      setEthEnabled(true);
-    });
-  }
+
+  let connectWallet = async () => {
+    if (!walletEnabled || window.ethereum) {
+      window.web3 = new Web3(window.ethereum);
+      window.ethereum.enable().then((e) => {
+        setWalletEnabled(true);
+      });
+    }
+  };
+
+  connectWallet();
 
   setInterval((e) => {
-    if (ethEnabled && account) {
+    if (walletEnabled && account) {
       dixTract.methods
         .getDicksForMouth(account)
         .call({ from: account })
@@ -55,7 +62,7 @@ function Mouth(props) {
   }, 60000);
 
   useEffect(() => {
-    if (ethEnabled) {
+    if (walletEnabled) {
       web3.eth.getAccounts().then((accts) => {
         setAccount(accts[0]);
         dixTract.methods
@@ -81,7 +88,7 @@ function Mouth(props) {
           });
       });
     }
-  }, [buttStickinStatus, buttPullinStatus, ethEnabled]);
+  }, [buttStickinStatus, buttPullinStatus, walletEnabled]);
 
   const stickDixInButt = function () {
     setButtStickin({ status: "undefined" });
@@ -157,10 +164,20 @@ function Mouth(props) {
   return (
     <>
       <div className="content">
-        {!ethEnabled ? (
-          <Alert color="danger">
-            You need to connect your MetaMask wallet to this site before working
-            with DIX, <a href="https://metamask.io/">Download MetaMask</a>
+        {!walletEnabled ? (
+          <Alert color="info">
+            <Row>
+              <Col xs="2">
+                <Button onClick={(e) => connectWallet()}>Connect Wallet</Button>
+              </Col>
+              <Col>
+                You need to connect your MetaMask wallet to this site before
+                working with DIX,{" "}
+                <Button color="primary" href="https://metamask.io/">
+                  Download MetaMask
+                </Button>
+              </Col>
+            </Row>
           </Alert>
         ) : null}
 
