@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Web3 from "web3";
 import Contract from "web3-eth-contract";
 import erc20jsonInterface from "../Config/ERC20.json";
-import { BscConnector } from "@binance-chain/bsc-connector";
 // reactstrap components
 import {
   Alert,
