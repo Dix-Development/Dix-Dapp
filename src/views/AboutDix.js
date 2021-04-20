@@ -86,6 +86,12 @@ function AboutDix() {
                     >
                       Dixcord
                     </Button>
+                    <Button
+                      color="secondary"
+                      href="https://twitter.com/DixToken"
+                    >
+                      TwiDixtter
+                    </Button>
                   </ButtonGroup>
                 </div>
               </CardBody>
