@@ -22,15 +22,15 @@ function AboutDix() {
           </Col>
           <Col>
             <Card>
-              <CardHeader tag="h1"> What is Dix?</CardHeader>
+              <CardHeader tag="h1">OPEN WIDE</CardHeader>
               <CardBody>
                 <CardText>
-                  Dix is a token on the ethereum network that is meant to make
-                  you open wide as you stick Dix into your mouth and butt. Dix
-                  token can be stuck into your friends mouths to let them know
-                  how much you like them. Dix can also be stuck in your butt for
-                  more Dix in your mouth! With Dix, the roof of your mouth is
-                  the limit so open wide and accept those Dix!
+                  Have you been looking for something to fill the emptyness in
+                  your mouth, or anus, look no further than DIX, the hands-on
+                  token on the Binance Snartchain that you can go all-in on.
+                  Everyone knows, sharing is caring, so you can stick your dix
+                  in anyone's mouth, anus, or both to show them you care. Just
+                  obtain consent first ;)
                 </CardText>
               </CardBody>
             </Card>
@@ -39,29 +39,28 @@ function AboutDix() {
         <Row>
           <Col>
             <Card>
-              <CardHeader tag="h1">Wait you mentioned my mouth?</CardHeader>
+              <CardHeader tag="h1">PUT IT WHERE?</CardHeader>
               <CardBody>
                 <CardText>
-                  Yes we did! Your mouth AKA your wallet is where you store your
-                  Dix. These Dix are liquid and easily stuck in your friends
-                  mouths. An Ethereum wallet is required to have a mouth for
-                  your dix and as of now we support Metamask for our app!
+                  DIX are best stored in the mouth, our custom wallet where your
+                  DIX are stored securely until you are ready to deliver a
+                  massive load into somebody else's mouth. Of course, some days,
+                  you just can't get it up, and you'll want to find somewhere
+                  else to put your DIX, which is why we offer you the option of
+                  BUTT STUFF
                 </CardText>
               </CardBody>
             </Card>
           </Col>
           <Col>
             <Card>
-              <CardHeader tag="h1">
-                But what does this have to do with my Butt?
-              </CardHeader>
+              <CardHeader tag="h1">DID YOU SAY BUTT STUFF?</CardHeader>
               <CardBody>
                 <CardText>
-                  Ahh yes Dix can also be stuck into your butt! By sticking Dix
-                  into your Butt you earn more dix for your mouth. The more Dix
-                  you stick into your back end the more Dix you get for your
-                  mouth! A 1% reward of Dix for your mouth can be earned every
-                  day!
+                  Ah yes, now that you're rock hard and standing at attention,
+                  your DIX can be stuck in the BUTT as well, and once you do
+                  that, the real magic happens, your DIX grow and grow! Don't
+                  worry, this BUTT's deep enough for even the widest DIX.
                 </CardText>
               </CardBody>
             </Card>
