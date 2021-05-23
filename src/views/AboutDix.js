@@ -1,5 +1,9 @@
 import React from "react";
 import logo from "../logo.svg";
+import redditLogo from "../Reddit_Mark_OnDark.svg";
+import discordLogo from "../Discord_logo.svg";
+import telegramLogo from "../telegram_logo.svg";
+import twitterLogo from "../Twitter_bird_logo_2012.svg";
 
 import {
   Card,
@@ -10,7 +14,13 @@ import {
   Col,
   ButtonGroup,
   Button,
+  Media,
 } from "reactstrap";
+
+const imgStyle = {
+  maxHeight: 15,
+  maxWidth: 15,
+};
 
 function AboutDix() {
   return (
@@ -71,25 +81,52 @@ function AboutDix() {
             <Card>
               <CardHeader tag="h1">Communities</CardHeader>
               <CardBody>
-                <div className="text-center">
-                  <ButtonGroup size="lg">
+                <div>
+                  <ButtonGroup size="md">
                     <Button
                       color="secondary"
                       href="https://twitter.com/dixtoken"
                     >
+                      <Media
+                        style={imgStyle}
+                        left="true"
+                        src={twitterLogo}
+                        alt="twitter"
+                      />
                       @DixToken
                     </Button>
                     <Button
                       color="secondary"
                       href="https://www.reddit.com/r/dixtoken"
                     >
+                      <Media
+                        style={imgStyle}
+                        left="true"
+                        src={redditLogo}
+                        alt="Reddit"
+                      />
                       Reddix
                     </Button>
                     <Button
                       color="secondary"
                       href="https://discord.gg/RX3uHasKYU"
                     >
+                      <Media
+                        style={imgStyle}
+                        left="true"
+                        src={discordLogo}
+                        alt="Discord"
+                      />
                       Dixcord
+                    </Button>
+                    <Button color="secondary" href="https://t.me/DixToken">
+                      <Media
+                        style={imgStyle}
+                        left="true"
+                        src={telegramLogo}
+                        alt="Telegram"
+                      />
+                      TeleDix
                     </Button>
                   </ButtonGroup>
                 </div>

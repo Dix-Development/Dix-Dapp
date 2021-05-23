@@ -491,17 +491,5 @@ contract DIX is ERC20 {
         }
         return false;
     }
-    
-    
-    function justTheTip(address contentCreator, address provider, uint256 amount) public returns (bool) {
-        if(msg.sender != contentCreator && contentCreator != provider) {
-            uint256 creatorFund = (amount * 80)/100;
-            uint256 providerFund = amount - creatorFund;
-            bool creatorSuccess = transfer(contentCreator, creatorFund);
-            bool providerSuccess = transfer(provider, providerFund);
-            return creatorSuccess && providerSuccess;
-        }
-        return false;
-    }
-    
+   
 }
