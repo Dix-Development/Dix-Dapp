@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../logo.svg";
 import redditLogo from "../Reddit_Mark_OnDark.svg";
 import discordLogo from "../Discord_logo.svg";
@@ -23,12 +23,26 @@ const imgStyle = {
 };
 
 function AboutDix() {
+  let [buttonSize, setButtonSize] = useState("md");
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 600) {
+        setButtonSize("sm");
+      } else {
+        setButtonSize("md");
+      }
+    }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+  });
+
   return (
     <>
       <div className="content">
         <Row>
           <Col sm="2">
-            <img style={{ "max-height": "150px" }} src={logo} alt="Dix Logo" />
+            <img style={{ maxHeight: "150px" }} src={logo} alt="Dix Logo" />
           </Col>
           <Col>
             <Card>
@@ -82,14 +96,14 @@ function AboutDix() {
               <CardHeader tag="h1">Communities</CardHeader>
               <CardBody>
                 <div>
-                  <ButtonGroup size="md">
+                  <ButtonGroup size={buttonSize}>
                     <Button
                       color="secondary"
                       href="https://twitter.com/dixtoken"
                     >
                       <Media
                         style={imgStyle}
-                        left="true"
+                        left={true}
                         src={twitterLogo}
                         alt="twitter"
                       />
@@ -101,7 +115,7 @@ function AboutDix() {
                     >
                       <Media
                         style={imgStyle}
-                        left="true"
+                        left={true}
                         src={redditLogo}
                         alt="Reddit"
                       />
@@ -113,7 +127,7 @@ function AboutDix() {
                     >
                       <Media
                         style={imgStyle}
-                        left="true"
+                        left={true}
                         src={discordLogo}
                         alt="Discord"
                       />
@@ -122,7 +136,7 @@ function AboutDix() {
                     <Button color="secondary" href="https://t.me/DixToken">
                       <Media
                         style={imgStyle}
-                        left="true"
+                        left={true}
                         src={telegramLogo}
                         alt="Telegram"
                       />
