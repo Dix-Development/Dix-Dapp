@@ -93,7 +93,7 @@ function AboutDix() {
         <Row>
           <Col>
             <Card>
-              <CardHeader tag="h1">Burned DIX</CardHeader>
+              <CardHeader tag="h1">BURNED DIX!</CardHeader>
               <CardBody>
                 <CardText>
                   DIX need a good ole burnin'! On every transaction 5% of every
@@ -106,7 +106,7 @@ function AboutDix() {
           </Col>
           <Col>
             <Card>
-              <CardHeader tag="h1">Earned Dix</CardHeader>
+              <CardHeader tag="h1">EARNED DIX!</CardHeader>
               <CardBody>
                 <CardText>
                   Dix are earned with your butt. That voluptuous butt of yours.
