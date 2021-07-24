@@ -96,8 +96,8 @@ function AboutDix() {
               <CardHeader tag="h1">Burned DIX</CardHeader>
               <CardBody>
                 <CardText>
-                  Dix need a good ole burnin'! On every transaction 5% of every
-                  DIX is burned. Thats right the Dix get rubbed hard enough that
+                  DIX need a good ole burnin'! On every transaction 5% of every
+                  DIX is burned. Thats right the DIX get rubbed hard enough that
                   the DIX get burned. To Ashes... What can we say your strokes
                   are too good.
                 </CardText>
