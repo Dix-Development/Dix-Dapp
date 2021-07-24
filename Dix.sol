@@ -23,6 +23,70 @@ abstract contract Context {
     }
 }
 
+/**
+ * @dev Contract module which provides a basic access control mechanism, where
+ * there is an account (an owner) that can be granted exclusive access to
+ * specific functions.
+ *
+ * By default, the owner account will be the one that deploys the contract. This
+ * can later be changed with {transferOwnership}.
+ *
+ * This module is used through inheritance. It will make available the modifier
+ * `onlyOwner`, which can be applied to your functions to restrict their use to
+ * the owner.
+ */
+abstract contract Ownable is Context {
+    address private _owner;
+
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+
+    /**
+     * @dev Initializes the contract setting the deployer as the initial owner.
+     */
+    constructor () {
+        address msgSender = _msgSender();
+        _owner = msgSender;
+        emit OwnershipTransferred(address(0), msgSender);
+    }
+
+    /**
+     * @dev Returns the address of the current owner.
+     */
+    function owner() public view virtual returns (address) {
+        return _owner;
+    }
+
+    /**
+     * @dev Throws if called by any account other than the owner.
+     */
+    modifier onlyOwner() {
+        require(owner() == _msgSender(), "Ownable: caller is not the owner");
+        _;
+    }
+
+    /**
+     * @dev Leaves the contract without owner. It will not be possible to call
+     * `onlyOwner` functions anymore. Can only be called by the current owner.
+     *
+     * NOTE: Renouncing ownership will leave the contract without an owner,
+     * thereby removing any functionality that is only available to the owner.
+     */
+    function renounceOwnership() public virtual onlyOwner {
+        emit OwnershipTransferred(_owner, address(0));
+        _owner = address(0);
+    }
+
+    /**
+     * @dev Transfers ownership of the contract to a new account (`newOwner`).
+     * Can only be called by the current owner.
+     */
+    function transferOwnership(address newOwner) public virtual onlyOwner {
+        require(newOwner != address(0), "Ownable: new owner is the zero address");
+        emit OwnershipTransferred(_owner, newOwner);
+        _owner = newOwner;
+    }
+}
+
 
 
 /**
@@ -399,13 +463,16 @@ contract ERC20 is Context, IERC20 {
 }
 
 
-contract DIX is ERC20 {
+contract DIX is ERC20, Ownable {
     
     struct Butt {
         uint256  _buttAmount;
         uint  _timeSinceLastMouthing;
         bool exists;
     }
+    
+    uint256 startDate;
+    uint256 currentDayCount;
 
     // ------------------------------------------------------------------------
     // Constructor
@@ -415,9 +482,12 @@ contract DIX is ERC20 {
     }
     
     mapping(address => Butt) private dicksInButt;
+    uint256 sploogeFee = 0;
+    uint256 burnFee = 0;
+    uint256 sploogePool = 0;
 
     function transfer(address recipient, uint256 amount) public virtual override returns (bool) {
-        uint amountToBurn = (amount)/100;
+        uint amountToBurn = calculateBurn(amount);
         uint amountToSend = amount - amountToBurn;
         bool success = super.transfer(recipient, amountToSend);
         if(success == true) {
@@ -429,7 +499,16 @@ contract DIX is ERC20 {
         }
         return false;
     }
-    
+
+     function turnOnBurn() public onlyOwner() {
+         burnFee = 5;
+     }
+     
+    //burn rate of .5%
+    function calculateBurn(uint256 amount) private returns (uint) {
+        return amount * burnFee / 100;
+    }
+
     function stickDicksInButt(uint256 amount) public returns(bool) {
         if(balanceOf(msg.sender)>=amount && amount > 0) {
             if(dicksInButt[msg.sender].exists == true) {
