@@ -93,6 +93,34 @@ function AboutDix() {
         <Row>
           <Col>
             <Card>
+              <CardHeader tag="h1">Burned DIX</CardHeader>
+              <CardBody>
+                <CardText>
+                  Dix need a good ole burnin'! On every transaction 5% of every
+                  DIX is burned. Thats right the Dix get rubbed hard enough that
+                  the DIX get burned. To Ashes... What can we say your strokes
+                  are too good.
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col>
+            <Card>
+              <CardHeader tag="h1">Earned Dix</CardHeader>
+              <CardBody>
+                <CardText>
+                  Dix are earned with your butt. That voluptuous butt of yours.
+                  I'm just getting hot thinking about it! When you introduce
+                  your DIX into the butt you earn more dix for your butt. Dont
+                  worry though they are clean new DIX. DIX made for the mouth.
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Card>
               <CardHeader tag="h1">Communities</CardHeader>
               <CardBody>
                 <div>
