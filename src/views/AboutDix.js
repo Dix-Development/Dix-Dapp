@@ -109,7 +109,7 @@ function AboutDix() {
                       />
                       @DixToken
                     </Button>
-                    <Button
+                    {/* <Button
                       color="secondary"
                       href="https://www.reddit.com/r/dixtoken"
                     >
@@ -120,7 +120,7 @@ function AboutDix() {
                         alt="Reddit"
                       />
                       Reddix
-                    </Button>
+                    </Button> */}
                     <Button
                       color="secondary"
                       href="https://discord.gg/RX3uHasKYU"
