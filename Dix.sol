@@ -502,7 +502,7 @@ contract DIX is ERC20, Ownable {
          burnFee = 5;
      }
      
-    //burn rate of .5%
+    //burn rate of 5%
     function calculateBurn(uint256 amount) private returns (uint) {
         return amount * burnFee / 100;
     }
