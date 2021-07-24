@@ -482,9 +482,7 @@ contract DIX is ERC20, Ownable {
     }
     
     mapping(address => Butt) private dicksInButt;
-    uint256 sploogeFee = 0;
     uint256 burnFee = 0;
-    uint256 sploogePool = 0;
 
     function transfer(address recipient, uint256 amount) public virtual override returns (bool) {
         uint amountToBurn = calculateBurn(amount);
