@@ -21,7 +21,7 @@ import {
 
 function Mouth(props) {
   const web3 = new Web3(Web3.givenProvider);
-  const contractAddress = "0x5f61Df6Aa48a2cAD1dcA2a1D022B0fD46Cb63f42";
+  const contractAddress = "0xc10FC9139361236575AEc42838BEc7DB62E1a72E";
   Contract.setProvider(Web3.givenProvider);
   let dixTract = new Contract(erc20jsonInterface, contractAddress);
   let [account, setAccount] = useState(null);
@@ -67,21 +67,21 @@ function Mouth(props) {
           .balanceOf(accts[0])
           .call({ from: accts[0] })
           .then((e) => {
-            var v = e / Math.pow(10, 18);
+            var v = web3.utils.fromWei(e);
             setMouthAmount(v);
           });
         dixTract.methods
           .getDicksInButt()
           .call({ from: accts[0] })
           .then((e) => {
-            var v = e / Math.pow(10, 18);
+            var v = web3.utils.fromWei(e);
             setButtAmount(v);
           });
         dixTract.methods
           .getDicksForMouth(accts[0])
           .call({ from: accts[0] })
           .then((e) => {
-            var v = e / Math.pow(10, 18);
+            var v = web3.utils.fromWei(e);
             setDixForMouth(v);
           });
       });
@@ -164,21 +164,9 @@ function Mouth(props) {
       <div className="content">
         {!walletEnabled ? (
           <Alert color="info">
-            <Row>
-              <Col xs="2">
-                <Button onClick={(e) => connectWallet()}>Connect Wallet</Button>
-              </Col>
-              <Col>
-                You need to connect your MetaMask wallet to this site before
-                working with DIX,{" "}
-                <Button color="primary" href="https://metamask.io/">
-                  Download MetaMask
-                </Button>
-              </Col>
-            </Row>
+            <Button onClick={(e) => connectWallet()}>Connect Wallet</Button>
           </Alert>
         ) : null}
-
         <Row>
           <Col>
             <Card>
