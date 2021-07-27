@@ -116,9 +116,9 @@ function AboutDix() {
                   <CardBody>
                     <CardText>
                       2 - Buy and send BNB to MetaMask Buy BNB on an exchange
-                      (i.e. Binance, Kraken, Coinbase etc.). Transfer the tokens
-                      to your MetaMask wallet address. BEP-20 addresses start
-                      with a "0x"
+                      (i.e. Binance, Kraken, Crypto.com etc.). Transfer the
+                      tokens to your MetaMask wallet address. BEP-20 addresses
+                      start with a "0x"
                     </CardText>
                   </CardBody>
                 </Card>
