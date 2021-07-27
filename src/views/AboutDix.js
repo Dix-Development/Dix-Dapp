@@ -115,10 +115,10 @@ function AboutDix() {
                   <CardHeader tag="h5">Get Yourself Some BNB.</CardHeader>
                   <CardBody>
                     <CardText>
-                      2 - Buy and send BNB to MetaMask Buy BNB on an exchange
-                      (i.e. Binance, Kraken, Crypto.com etc.). Transfer the
-                      tokens to your MetaMask wallet address. BEP-20 addresses
-                      start with a "0x"
+                      Buy and send BNB to MetaMask Buy BNB on an exchange (i.e.
+                      Binance, Kraken, Crypto.com etc.). Transfer the tokens to
+                      your MetaMask wallet address. BEP-20 addresses start with
+                      a "0x"
                     </CardText>
                   </CardBody>
                 </Card>
@@ -128,8 +128,8 @@ function AboutDix() {
                   </CardHeader>
                   <CardBody>
                     <CardText>
-                      3 - Connect your wallet to Pancake Swap Access your wallet
-                      to PancakeSwap by clicking ‘Connect to a wallet’ and
+                      Connect your wallet to Pancake Swap Access your wallet to
+                      PancakeSwap by clicking ‘Connect to a wallet’ and
                       selecting MetaMask.
                     </CardText>
                   </CardBody>
@@ -138,7 +138,7 @@ function AboutDix() {
                   <CardHeader tag="h5">Get Yourself Some DIX!</CardHeader>
                   <CardBody>
                     <CardText>
-                      4 - Swap BNB for DIX You can start swapping as soon as you
+                      Swap BNB for DIX You can start swapping as soon as you
                       have BNB available! Press ‘Select a token’ and enter the
                       token address.
                     </CardText>
