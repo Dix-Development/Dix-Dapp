@@ -157,6 +157,16 @@ function AboutDix() {
                 </ButtonGroup>
               </CardBody>
             </Card>
+            <Card Body>
+              <CardHeader tag="h1">Whats Cuming Next?</CardHeader>
+              <CardBody>
+                <CardText>DIXDrops to community and Giveaways!</CardText>
+                <CardText>
+                  Keep your eye out for the Daily Splooge! Get showered in DIX
+                  in this exciting Lottery!
+                </CardText>
+              </CardBody>
+            </Card>
           </Col>
         </Row>
         <Footer />
