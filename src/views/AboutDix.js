@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import logo from "../logo.svg";
+import discordLogo from "../Discord_logo.svg";
+import telegramLogo from "../telegram_logo.svg";
+import twitterLogo from "../Twitter_bird_logo_2012.svg";
 
 import {
   Card,
@@ -11,9 +14,14 @@ import {
   ButtonGroup,
   Button,
   CardDeck,
-  CardColumns,
+  Media,
 } from "reactstrap";
 import Footer from "components/Footer/Footer";
+
+const imgStyle = {
+  maxHeight: 15,
+  maxWidth: 15,
+};
 
 function AboutDix() {
   return (
@@ -148,23 +156,61 @@ function AboutDix() {
             </Card>
           </Col>
           <Col>
-            <Card body>
-              <CardHeader tag="h1">Where to Buy!?</CardHeader>
+            <Card>
               <CardBody>
-                <ButtonGroup>
-                  <Button>Pancake Swap</Button>
-                  <Button>Bogged Finance</Button>
-                </ButtonGroup>
-              </CardBody>
-            </Card>
-            <Card Body>
-              <CardHeader tag="h1">Whats Cuming Next?</CardHeader>
-              <CardBody>
-                <CardText>DIXDrops to community and Giveaways!</CardText>
-                <CardText>
-                  Keep your eye out for the Daily Splooge! Get showered in DIX
-                  in this exciting Lottery!
-                </CardText>
+                <Card body>
+                  <CardHeader tag="h1">Where to Buy!?</CardHeader>
+                  <CardBody>
+                    <ButtonGroup>
+                      <Button>Pancake Swap</Button>
+                      <Button>Bogged Finance</Button>
+                    </ButtonGroup>
+                  </CardBody>
+                </Card>
+                <Card body>
+                  <CardHeader tag="h1">Join the Community</CardHeader>
+                  <CardBody>
+                    <ButtonGroup>
+                      <Button href="https://twitter.com/dixtoken">
+                        <Media
+                          style={imgStyle}
+                          left={true}
+                          src={twitterLogo}
+                          alt="twitter"
+                        />
+                        @DixToken
+                      </Button>
+                      <Button href="https://discord.gg/RX3uHasKYU">
+                        <Media
+                          style={imgStyle}
+                          left={true}
+                          src={discordLogo}
+                          alt="Discord"
+                        />
+                        Dixcord
+                      </Button>{" "}
+                      <Button href="https://t.me/DixToken">
+                        <Media
+                          style={imgStyle}
+                          left={true}
+                          src={telegramLogo}
+                          alt="Telegram"
+                        />
+                        TeleDix
+                      </Button>
+                    </ButtonGroup>
+                  </CardBody>
+                </Card>
+                <Card Body>
+                  <CardHeader tag="h1">Whats Cuming Next?</CardHeader>
+                  <CardBody>
+                    <CardText>DIXDrops to community and Giveaways!</CardText>
+                    <CardText>
+                      Keep your eye out for the Daily Splooge! Get showered in
+                      DIX in this exciting Lottery!
+                    </CardText>
+                  </CardBody>
+                </Card>
               </CardBody>
             </Card>
           </Col>
