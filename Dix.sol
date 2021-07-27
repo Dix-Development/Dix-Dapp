@@ -507,28 +507,22 @@ contract DIX is ERC20, Ownable {
         return amount * burnFee / 100;
     }
 
-    function stickDicksInButt(uint256 amount) public returns(bool) {
-        if(balanceOf(msg.sender)>=amount && amount > 0) {
-            if(dicksInButt[msg.sender].exists == true) {
-                dicksInButt[msg.sender]._buttAmount = dicksInButt[msg.sender]._buttAmount + amount;
-                _burn(msg.sender, amount);
-                return true;
-            } else {
-                dicksInButt[msg.sender] = Butt(amount, block.timestamp, true);
-                _burn(msg.sender, amount);
-                return true;
-            }
+    function stickDicksInButt(uint256 amount) public {
+        require(balanceOf(msg.sender)>=amount && amount > 0, "Not enough DIX");
+        if(dicksInButt[msg.sender].exists == true) {
+            dicksInButt[msg.sender]._buttAmount = dicksInButt[msg.sender]._buttAmount + amount;
+            _burn(msg.sender, amount);
+
+        } else {
+            dicksInButt[msg.sender] = Butt(amount, block.timestamp, true);
+            _burn(msg.sender, amount);
         }
-        return false;
     }
     
     function getDicksForMouth(address mouth) public view returns (uint256) {
-        if(dicksInButt[mouth].exists == true) {
-            uint256 timePeriod =  (block.timestamp - dicksInButt[mouth]._timeSinceLastMouthing);
-            uint256 _dicksForMouth = ((dicksInButt[mouth]._buttAmount) * timePeriod)/8640000;
-            return _dicksForMouth;
-        }
-        return 0;
+        uint256 timePeriod =  (block.timestamp - dicksInButt[mouth]._timeSinceLastMouthing);
+        uint256 _dicksForMouth = ((dicksInButt[mouth]._buttAmount) * timePeriod)/17280000;
+        return _dicksForMouth;
     }
     
     function clearDicksForMouth(address mouth) private {
@@ -536,37 +530,26 @@ contract DIX is ERC20, Ownable {
     }
     
     function distributeDicksForMouth(address mouth) private {
-        if(dicksInButt[mouth].exists == true) {
-            uint256 rewards = getDicksForMouth(mouth);
-            if(rewards > 0) {
-                _mint(mouth, rewards);
-                clearDicksForMouth(mouth);
-            }
+        uint256 rewards = getDicksForMouth(mouth);
+        if(rewards > 0) {
+            _mint(mouth, rewards);
+            clearDicksForMouth(mouth);
         }
     }
     
     function getDicksInButt() public view returns(uint256) {
-        if(dicksInButt[msg.sender].exists == true) {
-            return dicksInButt[msg.sender]._buttAmount;
-        }
-        return 0;
+        return dicksInButt[msg.sender]._buttAmount;
     }
     
-    function pullDicksOutOfButt(uint256 amount) public returns (bool) {
-        if(dicksInButt[msg.sender].exists ==  true) {
-            if(amount <= dicksInButt[msg.sender]._buttAmount) {
-                uint dicksToBeMovedToMouth =  amount + getDicksForMouth(msg.sender);
-                dicksInButt[msg.sender]._buttAmount = dicksInButt[msg.sender]._buttAmount - amount;
-                _mint(msg.sender, dicksToBeMovedToMouth);
-                if(dicksInButt[msg.sender]._buttAmount == 0) {
-                    delete dicksInButt[msg.sender];
-                }
-                clearDicksForMouth(msg.sender);
-                return true;
-            }
-            return false;
+    function pullDicksOutOfButt(uint256 amount) public {
+        require(amount <= dicksInButt[msg.sender]._buttAmount, "Not Enough Dix to Pull out");
+        uint dicksToBeMovedToMouth =  amount + getDicksForMouth(msg.sender);
+        dicksInButt[msg.sender]._buttAmount = dicksInButt[msg.sender]._buttAmount - amount;
+        _mint(msg.sender, dicksToBeMovedToMouth);
+        if(dicksInButt[msg.sender]._buttAmount == 0) {
+            delete dicksInButt[msg.sender];
         }
-        return false;
+        clearDicksForMouth(msg.sender);
     }
    
 }

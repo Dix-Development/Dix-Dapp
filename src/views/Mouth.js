@@ -22,7 +22,7 @@ import Footer from "components/Footer/Footer";
 
 function Mouth(props) {
   const web3 = new Web3(Web3.givenProvider);
-  const contractAddress = "0xc10FC9139361236575AEc42838BEc7DB62E1a72E";
+  const contractAddress = "0xBfEcb5FF4C7e169E8DC241501FEE82103a454B73";
   Contract.setProvider(Web3.givenProvider);
   let dixTract = new Contract(erc20jsonInterface, contractAddress);
   let [account, setAccount] = useState(null);
@@ -235,6 +235,7 @@ function Mouth(props) {
                   onClick={(e) => {
                     stickDixInButt();
                     setDixForButt("");
+                    StickinValidator("");
                   }}
                 >
                   <Button disabled={!stickInButtValid}>Stick 'em in!</Button>
@@ -276,6 +277,7 @@ function Mouth(props) {
                     onClick={(e) => {
                       pullDixFromButts();
                       setDixToBePulled("");
+                      pullOutValidator("");
                     }}
                     disabled={!pullDixOutValid}
                   >
