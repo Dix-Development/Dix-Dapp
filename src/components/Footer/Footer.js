@@ -17,44 +17,62 @@
 */
 /*eslint-disable*/
 import React from "react";
+const imgStyle = {
+  maxHeight: 15,
+  maxWidth: 15,
+};
+
+// import redditLogo from "../../Reddit_Mark_OnDark.svg";
+import discordLogo from "../../Discord_logo.svg";
+import telegramLogo from "../../telegram_logo.svg";
+import twitterLogo from "../../Twitter_bird_logo_2012.svg";
 
 // reactstrap components
-import { Container, Nav, NavItem, NavLink } from "reactstrap";
+import { Container, Nav, NavItem, NavLink, Media } from "reactstrap";
 
 function Footer() {
   return (
-    <footer className="footer">
-      <Container fluid>
-        <Nav>
-          <NavItem>
-            <NavLink href="https://www.creative-tim.com/?ref=bdr-user-archive-footer">
-              Creative Tim
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="https://www.creative-tim.com/presentation?ref=bdr-user-archive-footer">
-              About Us
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="https://www.creative-tim.com/blog?ref=bdr-user-archive-footer">
-              Blog
-            </NavLink>
-          </NavItem>
-        </Nav>
-        <div className="copyright">
-          © {new Date().getFullYear()} made with{" "}
-          <i className="tim-icons icon-heart-2" /> by{" "}
-          <a
-            href="https://www.creative-tim.com/?ref=bdr-user-archive-footer"
-            target="_blank"
-          >
-            Creative Tim
-          </a>{" "}
-          for a better web.
-        </div>
+    <>
+      <Nav className="justify-content-center">
+        <NavItem>
+          <NavLink href="https://twitter.com/dixtoken">
+            <Media
+              style={imgStyle}
+              left={true}
+              src={twitterLogo}
+              alt="twitter"
+            />
+            @DixToken
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="https://discord.gg/RX3uHasKYU">
+            <Media
+              style={imgStyle}
+              left={true}
+              src={discordLogo}
+              alt="Discord"
+            />
+            Dixcord
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="https://t.me/DixToken">
+            <Media
+              style={imgStyle}
+              left={true}
+              src={telegramLogo}
+              alt="Telegram"
+            />
+            TeleDix
+          </NavLink>
+        </NavItem>
+      </Nav>
+      <Container className="text-center">
+        © {new Date().getFullYear() + " "}
+        Dix Development
       </Container>
-    </footer>
+    </>
   );
 }
 

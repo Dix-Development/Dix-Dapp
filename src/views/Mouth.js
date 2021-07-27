@@ -18,6 +18,7 @@ import {
   InputGroupAddon,
   CardText,
 } from "reactstrap";
+import Footer from "components/Footer/Footer";
 
 function Mouth(props) {
   const web3 = new Web3(Web3.givenProvider);
@@ -170,7 +171,9 @@ function Mouth(props) {
         <Row>
           <Col>
             <Card>
-              <CardHeader tag="h3">Dix in your Mouth</CardHeader>
+              <CardHeader tag="h3" style={{ whiteSpace: "nowrap" }}>
+                Dix in your Mouth
+              </CardHeader>
               <CardBody>
                 <CardText>{mouthAmount}</CardText>
               </CardBody>
@@ -178,7 +181,9 @@ function Mouth(props) {
           </Col>
           <Col>
             <Card>
-              <CardHeader tag="h3">Dix in your Butt</CardHeader>
+              <CardHeader tag="h3" style={{ whiteSpace: "nowrap" }}>
+                Dix in your Butt
+              </CardHeader>
               <CardBody>
                 <CardText>{buttAmount}</CardText>
               </CardBody>
@@ -186,7 +191,9 @@ function Mouth(props) {
           </Col>
           <Col>
             <Card>
-              <CardHeader tag="h3">Dix for your Mouth</CardHeader>
+              <CardHeader tag="h3" style={{ whiteSpace: "nowrap" }}>
+                Dix for your Mouth
+              </CardHeader>
               <CardBody>
                 <CardText>{dixForMouth}</CardText>
               </CardBody>
@@ -196,7 +203,9 @@ function Mouth(props) {
         <Row>
           <Col>
             <Card>
-              <CardHeader tag="h3">Stick Dix in your Butt</CardHeader>
+              <CardHeader tag="h3" style={{ whiteSpace: "nowrap" }}>
+                Stick Dix in your Butt
+              </CardHeader>
               <CardBody>
                 <Alert color="danger" hidden={isStickinFailed()}>
                   {buttStickinStatus.message}
@@ -235,7 +244,9 @@ function Mouth(props) {
           </Col>
           <Col>
             <Card>
-              <CardHeader tag="h3">Pull Dix out of your Butt</CardHeader>
+              <CardHeader tag="h3" style={{ whiteSpace: "nowrap" }}>
+                Pull Dix out of your Butt
+              </CardHeader>
               <CardBody>
                 <Alert color="danger" hidden={isPullinFailed()}>
                   {buttPullinStatus.message}
@@ -298,6 +309,7 @@ function Mouth(props) {
             </Card>
           </Col>
         </Row>
+        <Footer />
       </div>
     </>
   );

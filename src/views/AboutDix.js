@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
 import logo from "../logo.svg";
-import redditLogo from "../Reddit_Mark_OnDark.svg";
-import discordLogo from "../Discord_logo.svg";
-import telegramLogo from "../telegram_logo.svg";
-import twitterLogo from "../Twitter_bird_logo_2012.svg";
 
 import {
   Card,
@@ -14,29 +10,11 @@ import {
   Col,
   ButtonGroup,
   Button,
-  Media,
+  CardDeck,
 } from "reactstrap";
-
-const imgStyle = {
-  maxHeight: 15,
-  maxWidth: 15,
-};
+import Footer from "components/Footer/Footer";
 
 function AboutDix() {
-  let [buttonSize, setButtonSize] = useState("md");
-
-  useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth < 600) {
-        setButtonSize("sm");
-      } else {
-        setButtonSize("md");
-      }
-    }
-    window.addEventListener("resize", handleResize);
-    handleResize();
-  });
-
   return (
     <>
       <div className="content">
@@ -45,7 +23,7 @@ function AboutDix() {
             <img style={{ maxHeight: "150px" }} src={logo} alt="Dix Logo" />
           </Col>
           <Col>
-            <Card>
+            <Card body>
               <CardHeader tag="h1">OPEN WIDE</CardHeader>
               <CardBody>
                 <CardText>
@@ -61,8 +39,8 @@ function AboutDix() {
           </Col>
         </Row>
         <Row>
-          <Col>
-            <Card>
+          <CardDeck className="mb-2">
+            <Card body>
               <CardHeader tag="h1">PUT IT WHERE?</CardHeader>
               <CardBody>
                 <CardText>
@@ -75,9 +53,7 @@ function AboutDix() {
                 </CardText>
               </CardBody>
             </Card>
-          </Col>
-          <Col>
-            <Card>
+            <Card body>
               <CardHeader tag="h1">DID YOU SAY BUTT STUFF?</CardHeader>
               <CardBody>
                 <CardText>
@@ -88,11 +64,7 @@ function AboutDix() {
                 </CardText>
               </CardBody>
             </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Card>
+            <Card body>
               <CardHeader tag="h1">BURNED DIX!</CardHeader>
               <CardBody>
                 <CardText>
@@ -103,9 +75,7 @@ function AboutDix() {
                 </CardText>
               </CardBody>
             </Card>
-          </Col>
-          <Col>
-            <Card>
+            <Card body>
               <CardHeader tag="h1">EARNED DIX!</CardHeader>
               <CardBody>
                 <CardText>
@@ -116,66 +86,20 @@ function AboutDix() {
                 </CardText>
               </CardBody>
             </Card>
-          </Col>
+          </CardDeck>
         </Row>
         <Row>
-          <Col>
-            <Card>
-              <CardHeader tag="h1">Communities</CardHeader>
-              <CardBody>
-                <div>
-                  <ButtonGroup size={buttonSize}>
-                    <Button
-                      color="secondary"
-                      href="https://twitter.com/dixtoken"
-                    >
-                      <Media
-                        style={imgStyle}
-                        left={true}
-                        src={twitterLogo}
-                        alt="twitter"
-                      />
-                      @DixToken
-                    </Button>
-                    {/* <Button
-                      color="secondary"
-                      href="https://www.reddit.com/r/dixtoken"
-                    >
-                      <Media
-                        style={imgStyle}
-                        left={true}
-                        src={redditLogo}
-                        alt="Reddit"
-                      />
-                      Reddix
-                    </Button> */}
-                    <Button
-                      color="secondary"
-                      href="https://discord.gg/RX3uHasKYU"
-                    >
-                      <Media
-                        style={imgStyle}
-                        left={true}
-                        src={discordLogo}
-                        alt="Discord"
-                      />
-                      Dixcord
-                    </Button>
-                    <Button color="secondary" href="https://t.me/DixToken">
-                      <Media
-                        style={imgStyle}
-                        left={true}
-                        src={telegramLogo}
-                        alt="Telegram"
-                      />
-                      TeleDix
-                    </Button>
-                  </ButtonGroup>
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
+          <Card body>
+            <CardHeader tag="h1">Where to Buy!?</CardHeader>
+            <CardBody>
+              <ButtonGroup>
+                <Button>Pancake Swap</Button>
+                <Button>Bogged Finance</Button>
+              </ButtonGroup>
+            </CardBody>
+          </Card>
         </Row>
+        <Footer />
       </div>
     </>
   );
